@@ -3,6 +3,8 @@ import tweepy
 from tweepy import OAuthHandler 
 from textblob import TextBlob
 import mysql.connector as mc
+import configparser
+import io
 
 class TwitterClient(object): 
 	''' 
@@ -12,11 +14,14 @@ class TwitterClient(object):
 		''' 
 		Class constructor or initialization method. 
 		'''
+
+		config = configparser.ConfigParser()
+		config.read('config.ini')
 		# keys and tokens from the Twitter Dev Console 
-		consumer_key = '49yh2KepopldjN9rf2a20isGj'
-		consumer_secret = 'Ryz1caenzOTPVod7RVYUOhFS8nMQHWAHw791EF3vtwyd17ChQY'
-		access_token = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-		access_token_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXX'
+		consumer_key = config['TWITTER']['consumer_key']
+		consumer_secret = config['TWITTER']['consumer_secret']
+		access_token = config['TWITTER']['access_token']
+		access_token_secret = config['TWITTER']['access_token_secret']
 
 		# attempt authentication 
 		try: 
@@ -60,10 +65,10 @@ class TwitterClient(object):
 
 		try: 
 			# call twitter api to fetch tweets 
-			#fetched_tweets = self.api.search(q = query, count = count) 
-			fetched_tweets = tweepy.Cursor(self.api.search, q='#nlproc', count=10)
+			fetched_tweets = self.api.search(q = query, count = count) 
+			#fetched_tweets = tweepy.Cursor(self.api.search, q='#nlproc', count=10)
 			# parsing tweets one by one 
-			for tweet in fetched_tweets.items(): 
+			for tweet in fetched_tweets: 
 				# empty dictionary to store required params of a tweet 
 				parsed_tweet = {} 
 
@@ -88,11 +93,16 @@ class TwitterClient(object):
 			print("Error : " + str(e))
 
 
-#get the database connection as a root user. database name is dapanalysis and no password
+#get the database connection. database name is dapanalysis 
 def get_connection():
-    return mc.connect(user='root', password='',
-                              host='127.0.0.1', database='dapanalysis',
-                              auth_plugin='mysql_native_password')
+	config = configparser.ConfigParser()
+	config.read('config.ini')
+	user = config['MYSQL']['user']
+	passwd = config['MYSQL']['passwd']
+	host = config['MYSQL']['host']
+	database = config['MYSQL']['database']
+	auth = config['MYSQL']['auth_plugin']
+	return mc.connect(user=user,password=passwd,host=host, database=database,auth_plugin=auth)
 
 # Read the topics from DB
 def read_topics():
