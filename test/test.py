@@ -21,6 +21,7 @@ listOfTweets=[]
 for tweet in fetched_tweets.items(3):
     #listOfTweets.append(tweet._json)
     dict_ = {'User Name': tweet.user.name,
+            'id' : tweet.id_str,
             'id_str' : tweet.id_str,
             'Tweet Created At': tweet.created_at,
             'Tweet Text': tweet.text,
