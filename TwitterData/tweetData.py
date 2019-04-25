@@ -65,10 +65,10 @@ class TwitterClient(object):
 
 		try: 
 			# call twitter api to fetch tweets 
-			fetched_tweets = self.api.search(q = query, count = count) 
-			#fetched_tweets = tweepy.Cursor(self.api.search, q='#nlproc', count=10)
+			#fetched_tweets = self.api.search(q = query, count = count) 
+			fetched_tweets = tweepy.Cursor(self.api.search, q=query, lang='en')
 			# parsing tweets one by one 
-			for tweet in fetched_tweets: 
+			for tweet in fetched_tweets.items(count): 
 				# empty dictionary to store required params of a tweet 
 				parsed_tweet = {} 
 
