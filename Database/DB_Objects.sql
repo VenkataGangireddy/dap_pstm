@@ -28,7 +28,7 @@ CREATE TABLE `ptsm`.`topic_entities_tbl` (
   
   
 CREATE TABLE `ptsm`.`twitter_data_tbl` (
-  `Tweet_Id` INT NOT NULL,
+  `Tweet_Id` VARCHAR(100) NOT NULL,
   `Tweet_Date` DATETIME,
   `Text` VARCHAR(1000),
   `Hashtag` VARCHAR(500),
@@ -61,7 +61,7 @@ CREATE TABLE `ptsm`.`twitter_data_tbl` (
   
 CREATE TABLE `ptsm`.`twitter_sentiments_tbl` (
   `Tweet_Sentiment_Id` INT NOT NULL AUTO_INCREMENT,
-  `Tweet_Id` INT NOT NULL,
+  `Tweet_Id` VARCHAR(100) NOT NULL,
   `Topic_Entity_Id` INT NOT NULL,
   `Sentiment_Type` ENUM('POSITIVE', 'NEGATIVE', 'NEUTRAL') NOT NULL,
   `Sentiment_Percentage` INT NOT NULL,
