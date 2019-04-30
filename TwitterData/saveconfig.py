@@ -10,10 +10,10 @@ if not os.path.isfile(configfile_name):
 
     # Add content to the file
     Config = configparser.ConfigParser()
-    Config['MYSQL'] = {'host': '127.0.0.1',
-                        'user': 'root',
-                        'passwd': '',
-                        'database': 'dapanalysis',
+    Config['MYSQL'] = {'host': 'dapproject.db.10836946.188.hostedresource.net',
+                        'user': 'dapproject',
+                        'passwd': 'ptsmProject123!',
+                        'database': 'dapproject',
                         'auth_plugin': 'mysql_native_password'}
 
     Config['TWITTER'] = {'consumer_key': '49yh2KepopldjN9rf2a20isGj',

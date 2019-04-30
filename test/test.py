@@ -1,5 +1,6 @@
 import tweepy
-from datetime import datetime,timedelta
+import datetime
+#from datetime import datetime,date,timedelta
 import csv
 import json
 
@@ -13,12 +14,14 @@ consumer_secret = "Ryz1caenzOTPVod7RVYUOhFS8nMQHWAHw791EF3vtwyd17ChQY"
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 #auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
-
+sinceDate = datetime.date.today() - datetime.timedelta(1)
+untilDate = datetime.date.today()
 tweets = []
-search_terms = 'DIVYA OR IPL'
-fetched_tweets = tweepy.Cursor(api.search, q=search_terms, lang='en')
+search_terms = 'Trump'
+fetched_tweets = tweepy.Cursor(api.search, q=search_terms, since = sinceDate , until = untilDate, lang='en')
 listOfTweets=[]
-for tweet in fetched_tweets.items(3):
+count = 0
+for tweet in fetched_tweets.items(5):
     #listOfTweets.append(tweet._json)
     dict_ = {'User Name': tweet.user.name,
             'id' : tweet.id_str,
@@ -28,6 +31,25 @@ for tweet in fetched_tweets.items(3):
             'Retweeted': tweet.retweeted,
             'Phone Type': tweet.source,
             }
-    listOfTweets.append(dict_)
+    #print(tweet.entities['hashtags'])
+    hashtag = ''
+    for hashtags in tweet.entities['hashtags']:
+        if hashtags != '':
+            hashtag = hashtag + '~' + hashtags['text']
+    #print(hashtag)
+    expandedurl = ''
+        
+    for urls in tweet.entities['urls']:
+        expandedurl = urls['expanded_url']
+        #print(urls['expanded_url'])
     
-print(listOfTweets)
+    #print(tweet.metadata['iso_language_code'])
+    #if tweet.retweeted == True:
+    #print(tweet.user)
+    if hasattr(tweet, 'retweeted_status'):
+        print(tweet.retweeted_status.user.name)
+        
+    listOfTweets.append(dict_)
+print(count)
+    
+#print(listOfTweets)
