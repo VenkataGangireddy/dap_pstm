@@ -106,8 +106,8 @@ def get_connection():
 
 # Read the topics from DB
 def read_topics():
-	topic_select = 'select * from topics'
-	result_set = run_query('select * from topics')
+	topic_select = 'select * from topics_tbl'
+	result_set = run_query('select * from topics_tbl')
 	for n in result_set:
 		print('id : ',n[0], "descriptio :", n[1])
     
