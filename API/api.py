@@ -64,7 +64,7 @@ def concept(concept):
 
             #get result here based on concept
 
-            if concept=='all':
+            if concept=='tweets':
                 q = "select a.*, twitter_sentiments_tbl.Sentiment_Type as SentimentType, twitter_sentiments_tbl.Sentiment_Percentage as SentimentPercent from (select topic_entities_tbl.Topic_Entity_Id as TopicID, topic_entities_tbl.Entity_Value as TopicName, twitter_data_tbl.Text as TweetMsg, twitter_data_tbl.Tweet_Date as TweetTimestamp, twitter_data_tbl.User_Screen_Name as TweetHandle, twitter_data_tbl.Tweet_Id as TweetID from topic_entities_tbl left join twitter_data_tbl on topic_entities_tbl.Topic_Entity_Id=twitter_data_tbl.Topic_Entity_Id where topic_entities_tbl.Active_Flag=1 AND twitter_data_tbl.Original_Tweet_Id='') as a left join twitter_sentiments_tbl on a.TweetID=twitter_sentiments_tbl.Tweet_Id order by TweetTimestamp desc"
 
                 result = data.run_query(q)
