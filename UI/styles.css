@@ -487,6 +487,20 @@ header .device-container .screen img {
 .tweet-neg:before{
   content:"negative";
 }
+.tweet-card .tweet-neu{
+  width:100%;
+  background-color:#577297;
+  color:#fff;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  text-align:center;
+  padding:3px 0px;
+  margin-top:8px;
+}
+.tweet-neu:before{
+  content:"neutral";
+}
 .tweet-card .opt a{
   font-size:11px;
   color:#999;
