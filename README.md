@@ -16,6 +16,13 @@ Planned for Sprint 2 - Integration to the Web App using the REST API service.  D
 ### Architecture
 ![alt text](imgs/MVP-Architecture.png "MVP Architecture")
 
-### The Web App
-Located at:  http://muftayebaly.com/apps/DAPPROJ/  
+### JIRA Board
+https://toydemoproject.atlassian.net/jira/software/projects/PTSM/boards/22  
 
+### The Web App
+**Located at:**  http://muftayebaly.com/apps/DAPPROJ/  
+**Description:**  
+The UI web app was built using Bootstrap as a base framework.  The design is completed using custom HTML/CSS/JS.  The files are currently hosted at the URL below and also on Github.  The UI service currently does not integrate with the REST API service to update the topics and tweets.  The integration with the REST API service will be in Sprint 2.  Only the homepage works from Sprint 1.
+![alt text](imgs/MVP-WebApp.png "MVP Web App")
+
+### The REST API Service
