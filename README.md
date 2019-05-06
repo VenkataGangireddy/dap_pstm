@@ -14,4 +14,4 @@ As part of Sprint 1 - we monitor any tweets related to Politics and topic entiti
 Planned for Sprint 2 - Integration to the Web App using the REST API service.  Docker for easy running.  Amazon Web Services (AWS) implementation.  Smarter intelligence using IBM Watson's Natural Language Understanding (potentially).
   
 ### Architecture
-
+![alt text](imgs/MVP-Architecture.png "MVP Architecture")
