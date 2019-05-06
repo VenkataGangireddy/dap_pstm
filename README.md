@@ -35,7 +35,7 @@ The REST API service was built in Python using flask.  It currently runs on your
 
 **Requirements:**  Python 3, Flask, MySql.Connector, MySQL Client, Pandas, ConfigParser, JSON, Sys
 
-**Run by:**  In terminal, navigate to the API folder.  Use command    python api.py  
+**Run by:**  In terminal, navigate to the API folder.  Use command "python api.py"
   
 ![alt text](imgs/MVP-RunAPI.png "MVP Run API")
 
@@ -46,3 +46,67 @@ The REST API service was built in Python using flask.  It currently runs on your
   
 **Sample Outputs:**  
 ![alt text](imgs/MVP-APIOutputs.png "MVP API Sample Outputs")
+
+### The Twitter Retrieval, Classify and Sentiment Analysis Service
+**Located at:**  TwitterData folder
+
+**Description:**  
+TwitterClient service provides below capabilities.  This will run on a schedule as part of Sprint 2 deliverables.
+* Method: get_tweets(twitter_connection, topic_entity_id, query, size)
+** Description: This method gets the data from twitter, based on topics or entities, using the Tweepy api.
+** Input: Twitter connection handle, topic or sub topic, query and the size
+** Output: Returns the cleansed twitter data in a an array format
+* Method: clean_tweet(twitter_connection, tweet)
+** Description : This method removes the special characters and returns the cleansed tweet
+** Input: Twitter connection handle, Tweet
+** Output: Tweet
+* Method: get_tweet_sentiment(twitter_connection, tweet)
+** Description: This  method calls the API “textblob” to run the sentiment
+** Input: Twitter connection handle, Tweet
+** Output: Tweet with the sentiment type
+* Method: main()
+** Description: This method uses twitter client and data client services to obtain the tweets, call the sentiment API and persist the output data back in the database.
+** Input: None
+** Output: None; Prints the summary of tweets to the console.
+
+**Requirements:**  python>=3.7.2, tornado>=5.0.1, pandas>=0.23.4, mysqlclient>=1.3.13, tweepy>=3.7.0, textblob>=0.15.3
+
+**Run by:**
+* Clone this project from Github
+* Move to this folder:  dap_pstm/TwitterData
+* Run "python3 tweetData.py"
+
+**Sample Output:**
+![alt text](imgs/MVP-TweetDataOutput.png "MVP Tweet Data Output")
+
+### The Data Services - Data Client Service
+**Located at:**  TwitterData/dataServices.py
+
+**Description:**  
+Data Services reads the configurations from the config.ini and provide below common database capabilities.
+* Method: readTopics() 
+** Description: This method reads the topics metadata from topics_tbl and topics_entities_tbl
+** Input: No input required
+** Output: Topic, Topic Entities
+* Method: run_query(connection, query)
+** Description: This is a common method to run any sql query to get the data from data base
+** Input: connection and sql Query
+** Output: resultset
+* Method: saveDatatoDB(connection, df, table )
+** Description: This is a common method to save the python dataframe data into a database table
+** Input: connection, pandas data frame, base table
+** Output: response cursor
+
+### The Data Store Service
+**Located at:** Godaddy Server Hostname - dapproject.db.10836946.188.hostedresource.net
+
+**Description**
+Stores the necessary data into a MySQL database for later use.  Tables defined below:
+* *topics_tbl* & *Topics_Entities_tbl* stores the topics and their entities which drives the Twitter API data
+* *twitter_data_tbl* stores the data attributes extracted via Twitter Retrieval Service
+* *twitter_sentiments_tbl* stores results of the sentiment analysis for an individual tweet. Sentiment Types:
+** POSITIVE
+** NEGATIVE
+** NEUTRAL
+
+
