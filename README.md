@@ -38,6 +38,11 @@ The REST API service was built in Python using flask.  It currently runs on your
 **Run by:**  In terminal, navigate to the API folder.  Use command    python api.py  
   
 ![alt text](imgs/MVP-RunAPI.png "MVP Run API")
+
+**Sample Inputs:**
+* http://127.0.0.1:5000/api/get/tweets
+* http://127.0.0.1:5000/api/get/topics
+* http://127.0.0.1:5000/api/get/trending/topics  (has parameter limit that takes integer) e.g. ?limit=100
   
 **Sample Outputs:**  
 ![alt text](imgs/MVP-APIOutputs.png "MVP API Sample Outputs")
