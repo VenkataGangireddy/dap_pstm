@@ -85,9 +85,9 @@ TwitterClient service provides below capabilities.  This will run on a schedule 
 **Description:**  
 Data Services reads the configurations from the config.ini and provide below common database capabilities.
 * Method: readTopics() 
-** Description: This method reads the topics metadata from topics_tbl and topics_entities_tbl
-** Input: No input required
-** Output: Topic, Topic Entities
+  * Description: This method reads the topics metadata from topics_tbl and topics_entities_tbl
+  * Input: No input required
+  * Output: Topic, Topic Entities
 * Method: run_query(connection, query)
 ** Description: This is a common method to run any sql query to get the data from data base
 ** Input: connection and sql Query
