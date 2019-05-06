@@ -109,4 +109,12 @@ Stores the necessary data into a MySQL database for later use.  Tables defined b
   * NEGATIVE
   * NEUTRAL
 
+### The Data Model
+![alt text](imgs/MVP-DataModel.png "MVP Data Model")
 
+## Big Picture (Future Aspirations)
+Implementation of an event stream and a topic modeling (machine learning) service to "discover" future topics based on popularity and peoples interest (their content).
+  
+![alt text](imgs/DAP-BigPic.png "Big Picture")
+
+**Copyrighted 2019 by Columbia University**
