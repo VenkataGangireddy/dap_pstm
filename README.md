@@ -17,10 +17,11 @@ Planned for Sprint 2 - Integration to the Web App using the REST API service.  D
 ![alt text](imgs/MVP-Architecture.png "MVP Architecture")
 
 ### JIRA Board
-https://toydemoproject.atlassian.net/jira/software/projects/PTSM/boards/22  
+https://toydemoproject.atlassian.net/jira/software/projects/PTSM/boards/22 
 
 ### The Web App
-**Located at:**  http://muftayebaly.com/apps/DAPPROJ/  
+**Located at:**  http://muftayebaly.com/apps/DAPPROJ/ 
+
 **Description:**  
 The UI web app was built using Bootstrap as a base framework.  The design is completed using custom HTML/CSS/JS.  The files are currently hosted at the URL below and also on Github.  The UI service currently does not integrate with the REST API service to update the topics and tweets.  The integration with the REST API service will be in Sprint 2.  Only the homepage works from Sprint 1.  
   
@@ -28,9 +29,12 @@ The UI web app was built using Bootstrap as a base framework.  The design is com
 
 ### The REST API Service
 **Located at:**  API/api.py
+
 **Description:**  
 The REST API service was built in Python using flask.  It currently runs on your local machine and leverages the dataServices DataClient in the TwitterData folder.  The service pulls the data from the MySQL database based on api GET calls and then publishes them to the user as a JSON string.
+
 **Requirements:**  Python 3, Flask, MySql.Connector, MySQL Client, Pandas, ConfigParser, JSON, Sys
+
 **Run by:**  In terminal, navigate to the API folder.  Use command    python api.py  
   
 ![alt text](imgs/MVP-RunAPI.png "MVP Run API")
