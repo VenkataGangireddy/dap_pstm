@@ -1,4 +1,4 @@
-# Politics Through Social Media (DAP Project)
+# Politics Through Social Media (DAP Project MVP)
 ### By Muf Tayebaly, Rohit Dalal, Phani Valasa, Venkat Gangireddy
 
 ## Objective
@@ -15,3 +15,7 @@ Planned for Sprint 2 - Integration to the Web App using the REST API service.  D
   
 ### Architecture
 ![alt text](imgs/MVP-Architecture.png "MVP Architecture")
+
+### The Web App
+Located at:  http://muftayebaly.com/apps/DAPPROJ/  
+
