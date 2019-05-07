@@ -2,6 +2,7 @@ import mysql.connector as mc
 import configparser
 import datetime
 import pandas as pd
+import os
 
 class dataClient():
 	'''
@@ -11,8 +12,10 @@ class dataClient():
 		'''
 		Class constructor or initialization method.
 		'''
+		config_file = os.path.join(os.path.dirname(__file__), 'config.ini')
 		self.config = configparser.ConfigParser()
-		self.config.read('config.ini')
+		# print ("test")
+		self.config.read(config_file)
 		self.user = self.config['MYSQL']['user']
 		self.passwd = self.config['MYSQL']['passwd']
 		self.host = self.config['MYSQL']['host']
@@ -27,6 +30,7 @@ class dataClient():
 	def read_topics(self):
 		topic_select = 'select a.topic_id,a.Name, b.Topic_Entity_Id,b.Entity_Type,b.Entity_Value from topics_tbl a, topic_entities_tbl b where a.topic_id = b.topic_id and a.Active_flag = 1 and b.Active_flag=1'
 		result_set = self.run_query(topic_select)
+		# print ("test")
 		return result_set
 		#for n in result_set:
 			#print('id : ',n[0], "description :", n[1])
