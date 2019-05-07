@@ -42,7 +42,7 @@ The REST API service was built in Python using flask.  It currently runs on your
 **Sample Inputs:**
 * http://127.0.0.1:5000/api/get/tweets
 * http://127.0.0.1:5000/api/get/topics
-* http://127.0.0.1:5000/api/get/trending/topics  (has parameter limit that takes integer) e.g. ?limit=100
+* http://127.0.0.1:5000/api/get/trending/topics  (has parameter limit for tweets that takes integer) e.g. ?limit=100
   
 **Sample Outputs:**  
 ![alt text](imgs/MVP-APIOutputs.png "MVP API Sample Outputs")
