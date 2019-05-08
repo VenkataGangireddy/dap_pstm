@@ -2,6 +2,7 @@ import mysql.connector as mc
 import configparser
 import datetime
 import pandas as pd
+from pandas import DataFrame
 import os
 
 class dataClient():
@@ -25,6 +26,29 @@ class dataClient():
 	#get the database connection. database name is in .ini file
 	def get_connection(self):
 		return mc.connect(user=self.user,password=self.passwd,host=self.host, database=self.database,auth_plugin=self.auth)
+
+	def read_topics2(self):
+		topic_select = 'select a.topic_id,a.Name, b.Topic_Entity_Id,b.Entity_Type,b.Entity_Value from topics_tbl a, topic_entities_tbl b where a.topic_id = b.topic_id and a.Active_flag = 1 and b.Active_flag=1'
+		df = self.get_dataAsDataFrame(topic_select)
+		return df
+
+	def get_dataAsDataFrame(self,sql):
+		try:
+			connection = self.get_connection()
+			cursor = connection.cursor(buffered=True) #need to set buffered=True to avoid MySQL Unread result error
+			cursor.execute(sql)
+			num_fields = len(cursor.description)
+			field_names = [i[0] for i in cursor.description]
+			df = DataFrame(cursor.fetchall(),columns=field_names)
+			connection.commit()
+			cursor.close()
+			connection.close()
+			return df
+		except Exception as e:
+			print(e)
+			cursor.close()
+			connection.close()
+
 
 	# Read the topics from DB
 	def read_topics(self):
@@ -61,3 +85,6 @@ class dataClient():
 			print(e)
 			cursor.close()
 			connection.close()
+
+if __name__ == "__main__":
+	pass
