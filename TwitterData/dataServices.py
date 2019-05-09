@@ -13,6 +13,7 @@ class dataClient():
 		'''
 		Class constructor or initialization method.
 		'''
+		# The below line of code is for enabling the code to run in Docker
 		config_file = os.path.join(os.path.dirname(__file__), 'config.ini')
 		self.config = configparser.ConfigParser()
 		# print ("test")
@@ -56,8 +57,6 @@ class dataClient():
 		result_set = self.run_query(topic_select)
 		# print ("test")
 		return result_set
-		#for n in result_set:
-			#print('id : ',n[0], "description :", n[1])
 
 	def run_query(self, sql):
 	    connection = self.get_connection()
