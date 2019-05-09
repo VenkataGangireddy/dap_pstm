@@ -73,4 +73,17 @@ CREATE TABLE `dapproject`.`twitter_sentiments_tbl` (
   CONSTRAINT `twitter_sentiments_fk01` FOREIGN KEY (`Tweet_Id`) REFERENCES `dapproject`.`twitter_data_tbl` (`Tweet_Id`),
   CONSTRAINT `twitter_sentiments_fk02` FOREIGN KEY (`Topic_Entity_Id`) REFERENCES `dapproject`.`topic_entities_tbl` (`Topic_Entity_Id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=UTF8; 
-  
+ 
+ 
+   CREATE TABLE `dapproject`.`events_log_tbl` (
+    `Event_Log_Id` INT NOT NULL AUTO_INCREMENT,
+    `Topic_Entity_Id` INT NOT NULL,
+    `Start_Time` TIMESTAMP NOT NULL  DEFAULT 0,
+    `End_Time` TIMESTAMP NOT NULL  DEFAULT 0,
+    `Records_Processed` INT,
+    `Status` ENUM('SUCCESS', 'FAIL') NOT NULL,
+    `Created_Date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `Modified_Date` TIMESTAMP,
+    PRIMARY KEY (`Event_Log_Id`),
+    CONSTRAINT `events_log_fk01` FOREIGN KEY (`Topic_Entity_Id`) REFERENCES `dapproject`.`topic_entities_tbl` (`Topic_Entity_Id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=UTF8; 
