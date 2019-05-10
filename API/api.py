@@ -3,6 +3,7 @@ from flask import Flask
 from flask import request
 import json
 from flask import Response
+from flask_cors import CORS
 import sys
 
 sys.path.append("../TwitterData")
@@ -15,7 +16,7 @@ data = dataClient()
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/')
 def hello_world():
@@ -160,4 +161,4 @@ def trending(concept):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run()
