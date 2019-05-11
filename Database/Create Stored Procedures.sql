@@ -30,4 +30,52 @@ INSERT INTO events_log_tbl (Topic_Entity_Id,
                             p_status);
 COMMIT;                          
 END$$
+DELIMITER;
+
+-- Stored Procedure to Get Tweets and Sentiments
+DELIMITER $$
+CREATE DEFINER=`dapproject`@`%` PROCEDURE `Get_Tweets_Sentiments`(tweet_type varchar(20))
+BEGIN
+	IF tweet_type = 'ORIGINAL' THEN
+		SELECT a.Topic_Entity_Id as TopicID, a.Entity_Value as TopicName, b.Text as TweetMsg, b.Tweet_Date as TweetTimestamp, b.User_Screen_Name as TweetHandle, 
+			   b.Tweet_Id as TweetID, c.Sentiment_Type as SentimentType, c.Sentiment_Percentage as SentimentPercent 
+		FROM   topic_entities_tbl a,   
+			   twitter_data_tbl b, 
+			   twitter_sentiments_tbl c
+		WHERE  a.Topic_Entity_Id = b.Topic_Entity_Id
+		AND    b.Tweet_Id = c.Tweet_Id
+		AND    a.Active_Flag = 1
+		AND    b.Original_Tweet_Id = ''
+		AND    b.In_Reply_To_User_id IS NULL
+		ORDER BY TweetTimestamp DESC;
+
+	ELSEIF tweet_type = 'RETWEET' THEN
+		SELECT a.Topic_Entity_Id as TopicID , a.Entity_Value as TopicName, b.Text as TweetMsg, b.Tweet_Date as TweetTimestamp, b.User_Screen_Name as TweetHandle, 
+			   b.Tweet_Id as TweetID, c.Sentiment_Type as SentimentType, c.Sentiment_Percentage as SentimentPercent 
+		FROM   topic_entities_tbl a,   
+			   twitter_data_tbl b, 
+			   twitter_sentiments_tbl c
+		WHERE  a.Topic_Entity_Id = b.Topic_Entity_Id
+		AND    b.Tweet_Id = c.Tweet_Id
+		AND    a.Active_Flag = 1
+		AND    b.Original_Tweet_Id <> ''
+		AND    b.In_Reply_To_User_id IS NULL
+		ORDER BY TweetTimestamp DESC;
+
+	ELSEIF tweet_type = 'REPLY' THEN
+		SELECT a.Topic_Entity_Id as TopicID , a.Entity_Value as TopicName, b.Text as TweetMsg, b.Tweet_Date as TweetTimestamp, b.User_Screen_Name as TweetHandle, 
+			   b.Tweet_Id as TweetID, c.Sentiment_Type as SentimentType, c.Sentiment_Percentage as SentimentPercent 
+		FROM   topic_entities_tbl a,   
+			   twitter_data_tbl b, 
+			   twitter_sentiments_tbl c
+		WHERE  a.Topic_Entity_Id = b.Topic_Entity_Id
+		AND    b.Tweet_Id = c.Tweet_Id
+		AND    a.Active_Flag = 1
+		AND    b.In_Reply_To_User_id IS NOT NULL
+		ORDER BY TweetTimestamp DESC;
+        
+	END IF;
+END$$
 DELIMITER ;
+										     
+									       
