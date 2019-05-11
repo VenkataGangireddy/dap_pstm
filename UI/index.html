@@ -47,14 +47,14 @@
                         <a class="page-scroll" href="#page-top">home</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#">topics</a>
+                        <a class="page-scroll" href="#">more coming soon</a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a class="page-scroll" href="#">2020 candidates</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#">dashboard</a>
-                    </li>
+                    </li>-->
                     <!--<li>
                         <a class="page-scroll button-last" href="#login">Login</a>
                     </li>-->
@@ -71,7 +71,7 @@
                 <div class="col-sm-12">
                     <div class="header-content">
                       <div class="header-content-m">
-                        <h1>TRENDING NOW</h1>
+                        <h1>MOST POPULAR TOPIC</h1>
 
                         <div id="topTrending" class="row">
 
@@ -88,12 +88,22 @@
         </div>
     </header>
 
-    <section id="discover" class="download bg-white text-center">
+    <section id="discover" class="download bg-white">
+      <div class="container">
+        <h1>OTHER TRENDING TOPICS</h1>
+
+        <div id="otherTrending" class="row">
 
 
+
+        </div>
+
+      </div>
 
     </section>
 
+<br>
+<br>
 
 
 </div><!-- end main content with room on the bottom -->
@@ -163,8 +173,8 @@ $('.carousel2 .item').each(function() {
 });
 
 $(document).ready(function(){
-  //var url="http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/trending/topics?limit=500";
-  var url="http://127.0.0.1:5000/api/get/trending/topics?limit=500";
+  var url="http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/trending/topics?limit=500";
+  //var url="http://127.0.0.1:5000/api/get/trending/topics?limit=500";
   var xhr=createCORSRequest('GET', url);
   if (!xhr) {
   	alert('CORS not supported');
@@ -210,6 +220,36 @@ function buildTrendingTopics(data){
       $('#topic-'+data[i].id+'-row-'+row).append('<div class="tweet-card"><div class="tw-logo"><i class="fa fa-twitter"></i></div><div class="tw-handle">@'+data[i].tweets[j].handle+'</div><div class="tweet">'+data[i].tweets[j].msg+'</div><div class="tweet-'+sent+'"></div><div class="row"><div class="col-sm-6 opt"><a href="#"><i class="fa fa-twitter"></i> Like</a></div><div class="col-sm-6 opt"><a href="#">Share <span class="glyphicon glyphicon-share-alt"></span></a></div></div></div>');
 
     }
+
+  }
+
+  //other trending topics
+  for(i=1; i<data.length; i++){
+    pos=data[i].positive/(data[i].positive+data[i].negative)*150;
+    neg=data[i].negative/(data[i].positive+data[i].negative)*150;
+
+    $('#otherTrending').append('<div class="col-sm-4"><div class="bg-dgrey top-trending"><div class="trend-title">'+data[i].name+'</div><div class="stack-bar"><table><tr><td>POSITIVE</td></tr><tr><td height="138"><div class="pos-bar" style="height:'+pos+'px;"></div><div class="neg-bar" style="height:'+neg+'px;"></div></td></tr><tr><td>NEGATIVE</td></tr></table></div></div></div><div class="col-sm-8 padding-l0"><div class="bg-dblue-t top-trending"><div id="carousel-'+data[i].id+'" class="carousel slide c-tweets" data-ride="carousel-'+data[i].id+'" data-type="" data-interval="false"><div id="topic-'+data[i].id+'" class="carousel-inner">'+'</div><div class="left carousel-control lt-control"><a href="#carousel-'+data[i].id+'" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a></div><div class="right carousel-control rt-control"><a href="#carousel-'+data[i].id+'" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a></div></div></div></div>');
+
+    row=0;
+
+    for(j=0; j<data[i].tweets.length; j++){
+      if(j==0){
+        $('#topic-'+data[i].id).append('<div id="topic-'+data[i].id+'-row-0" class="item active"></div>');
+      }else if((j%4)==0){
+        row=j/4;
+        $('#topic-'+data[i].id).append('<div id="topic-'+data[i].id+'-row-'+row+'" class="item"></div>');
+      }
+      if(data[i].tweets[j].sentiment=='POSITIVE'){
+        sent='pos';
+      }else if(data[i].tweets[j].sentiment=='NEUTRAL'){
+        sent='neu';
+      }else{
+        sent='neg';
+      }
+      $('#topic-'+data[i].id+'-row-'+row).append('<div class="tweet-card"><div class="tw-logo"><i class="fa fa-twitter"></i></div><div class="tw-handle">@'+data[i].tweets[j].handle+'</div><div class="tweet">'+data[i].tweets[j].msg+'</div><div class="tweet-'+sent+'"></div><div class="row"><div class="col-sm-6 opt"><a href="#"><i class="fa fa-twitter"></i> Like</a></div><div class="col-sm-6 opt"><a href="#">Share <span class="glyphicon glyphicon-share-alt"></span></a></div></div></div>');
+
+    }
+    $('#otherTrending').append('<div class="row" style="clear:both"><br><br><br><br></div>');
 
   }
 
