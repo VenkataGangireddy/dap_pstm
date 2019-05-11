@@ -34,9 +34,9 @@ DELIMITER;
 
 -- Stored Procedure to Get Tweets and Sentiments
 DELIMITER $$
-CREATE DEFINER=`dapproject`@`%` PROCEDURE `Get_Tweets_Sentiments`(tweet_type varchar(20))
+CREATE DEFINER=`dapproject`@`%` PROCEDURE `Get_Tweets_Sentiments`(p_tweet_type varchar(20))
 BEGIN
-	IF UPPER(tweet_type) = 'ORIGINAL' THEN
+	IF UPPER(p_tweet_type) = 'ORIGINAL' THEN
 		SELECT a.Topic_Entity_Id as TopicID, a.Entity_Value as TopicName, b.Text as TweetMsg, b.Tweet_Date as TweetTimestamp, b.User_Screen_Name as TweetHandle, 
 			   b.Tweet_Id as TweetID, c.Sentiment_Type as SentimentType, c.Sentiment_Percentage as SentimentPercent 
 		FROM   topic_entities_tbl a,   
@@ -49,7 +49,7 @@ BEGIN
 		AND    b.In_Reply_To_User_id IS NULL
 		ORDER BY TweetTimestamp DESC;
 
-	ELSEIF UPPER(tweet_type) = 'RETWEET' THEN
+	ELSEIF UPPER(p_tweet_type) = 'RETWEET' THEN
 		SELECT a.Topic_Entity_Id as TopicID , a.Entity_Value as TopicName, b.Text as TweetMsg, b.Tweet_Date as TweetTimestamp, b.User_Screen_Name as TweetHandle, 
 			   b.Tweet_Id as TweetID, c.Sentiment_Type as SentimentType, c.Sentiment_Percentage as SentimentPercent 
 		FROM   topic_entities_tbl a,   
@@ -62,7 +62,7 @@ BEGIN
 		AND    b.In_Reply_To_User_id IS NULL
 		ORDER BY TweetTimestamp DESC;
 
-	ELSEIF UPPER(tweet_type) = 'REPLY' THEN
+	ELSEIF UPPER(p_tweet_type) = 'REPLY' THEN
 		SELECT a.Topic_Entity_Id as TopicID , a.Entity_Value as TopicName, b.Text as TweetMsg, b.Tweet_Date as TweetTimestamp, b.User_Screen_Name as TweetHandle, 
 			   b.Tweet_Id as TweetID, c.Sentiment_Type as SentimentType, c.Sentiment_Percentage as SentimentPercent 
 		FROM   topic_entities_tbl a,   
