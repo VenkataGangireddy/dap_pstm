@@ -7,6 +7,7 @@ import io
 import datetime
 import pandas as pd
 from dataServices import dataClient
+from watsonNLU import watsonNLUClient
 
 class TwitterClient(object):
 	'''
@@ -57,6 +58,7 @@ class TwitterClient(object):
 			return 'neutral'
 		else:
 			return 'negative'
+		
 
 	def get_tweets(self, topic_Entity_id, query, count = 10):
 		'''
@@ -67,6 +69,7 @@ class TwitterClient(object):
 		tweets = []
 
 		try:
+			nluClient = watsonNLUClient()
 			# call twitter api to fetch tweets
 			#fetched_tweets = self.api.search(q = query, count = count)
 			sinceDate = datetime.date.today() - datetime.timedelta(1)
@@ -127,8 +130,13 @@ class TwitterClient(object):
 				parsed_tweet['Created_Date'] = datetime.date.today()
 				parsed_tweet['Modified_Date'] = datetime.date.today()
 				# saving sentiment of tweet
-				parsed_tweet['Sentiment_Type'] = self.get_tweet_sentiment(tweet.text).upper()
-				parsed_tweet['Sentiment_Percentage'] = 1
+				#parsed_tweet['Sentiment_Type'] = self.get_tweet_sentiment(tweet.text).upper()
+				#parsed_tweet['Sentiment_Percentage'] = 1
+				
+				
+				# saving sentiment of tweet using IBM watson
+				parsed_tweet['Sentiment_Type'],parsed_tweet['Sentiment_Percentage'] = nluClient.sentimentwithWatsonNLU(tweet.text)
+				
 				# appending parsed tweet to tweets list
 				if tweet.retweet_count > 0:
 					# if tweet has retweets, ensure that it is appended only once
