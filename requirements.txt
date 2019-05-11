@@ -9,5 +9,5 @@ mysqlclient>=1.4.1
 twwepy>=3.7.0
 ibm-watson>=3.0.3
 
-mysql database>=8.0.14
-MySQl Workbench>=8.0
+MySQL database>=8.0.14
+MySQL Workbench>=8.0
