@@ -20,6 +20,11 @@ if not os.path.isfile(configfile_name):
                         'consumer_secret': 'Ryz1caenzOTPVod7RVYUOhFS8nMQHWAHw791EF3vtwyd17ChQY',
                         'access_token': 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
                         'access_token_secret': 'XXXXXXXXXXXXXXXXXXXXXXXXX'}
+    
+    Config['IBMWATSON'] = {'iam_apikey': 'dnby4_Q9Wx54inSunQ-6xdO2CNIfsVhlatzopCIOsRbR',
+                        'url': 'https://gateway-wdc.watsonplatform.net/natural-language-understanding/api',
+                        'version': '2018-12-19'}
+
     Config['OTHER'] = {'use_anonymous':True}            
     Config.write(cfgfile)
     cfgfile.close()
