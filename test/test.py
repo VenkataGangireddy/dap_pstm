@@ -5,6 +5,7 @@ import csv
 import json
 
 
+
 access_token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 access_token_secret = "XXXXXXXXXXXXXXXXXXXXXXXXX"
 consumer_key = "49yh2KepopldjN9rf2a20isGj"
@@ -50,6 +51,16 @@ for tweet in fetched_tweets.items(5):
         print(tweet.retweeted_status.user.name)
         
     listOfTweets.append(dict_)
-print(count)
-    
+#print(count)
+
+def query_and_iterate(self, query):
+        self.query(query)
+        result = self.use_result()
+        row = result.fetch_row()
+        while row:
+            yield row
+            row = result.fetch_row()
+
+
+
 #print(listOfTweets)
