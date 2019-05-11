@@ -67,6 +67,7 @@ CREATE TABLE `dapproject`.`twitter_sentiments_tbl` (
   `Created_Date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified_Date` TIMESTAMP,
   PRIMARY KEY (`Tweet_Sentiment_Id`),
+  UNIQUE KEY `twitter_sentiments_uk01` (`Tweet_Id`),
   CONSTRAINT `twitter_sentiments_fk01` FOREIGN KEY (`Tweet_Id`) REFERENCES `dapproject`.`twitter_data_tbl` (`Tweet_Id`),
   CONSTRAINT `twitter_sentiments_fk02` FOREIGN KEY (`Topic_Entity_Id`) REFERENCES `dapproject`.`topic_entities_tbl` (`Topic_Entity_Id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=UTF8; 
