@@ -47,6 +47,13 @@ The REST API service was built in Python using flask.  It currently runs on your
 **Sample Outputs:**  
 ![alt text](imgs/MVP-APIOutputs.png "MVP API Sample Outputs")
 
+**Services running in AWS Docker Containers:**
+These REST API services have also been deployed on AWS using Docker containers. They can be accessed via the following URLs.
+
+* http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/tweets
+* http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/topics
+* http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/trending/topics 
+
 ### The Twitter Retrieval, Classify and Sentiment Analysis Service
 **Located at:**  TwitterData folder
 
