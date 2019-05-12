@@ -9,3 +9,5 @@ INSERT INTO dapproject.topic_entities_tbl (Topic_Id, Entity_Type, Entity_Value, 
 	VALUES ('1', 'KEYWORD', 'HEALTH CARE', '1');
 INSERT INTO dapproject.topic_entities_tbl (Topic_Id, Entity_Type, Entity_Value, Active_Flag) 
 	VALUES ('1', 'KEYWORD', 'IMMIGRATION', '1');
+INSERT INTO dapproject.topic_entities_tbl (Topic_Id, Entity_Type, Entity_Value, Active_Flag) 
+	VALUES ('1', 'KEYWORD', 'EDUCATION', '1');	

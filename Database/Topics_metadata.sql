@@ -1,5 +1,0 @@
-INSERT INTO ptsm.topics_tbl (Topic_Id, Name, Description, Active_Flag, Created_Date, Modified_Date) VALUES ('1', 'POLITICS', 'POLITICS', '1', '2019-04-30', '2019-04-30');
-INSERT INTO ptsm.topic_entities_tbl (Topic_Entity_Id, Topic_Id, Entity_Type, Entity_Value, Active_Flag, Created_Date, Modified_Date) VALUES ('1', '1', 'KEYWORD', 'TRUMP', '1', '2019-04-30', '2019-04-30');
-INSERT INTO ptsm.topic_entities_tbl (Topic_Entity_Id, Topic_Id, Entity_Type, Entity_Value, Active_Flag, Created_Date, Modified_Date) VALUES ('2', '1', 'KEYWORD', 'WHITE HOUSE', '1', '2019-04-30', '2019-04-30');
-INSERT INTO ptsm.topic_entities_tbl (Topic_Entity_Id, Topic_Id, Entity_Type, Entity_Value, Active_Flag, Created_Date, Modified_Date) VALUES ('3', '1', 'KEYWORD', 'HEALTH CARE', '1', '2019-04-30', '2019-04-30');
-INSERT INTO ptsm.topic_entities_tbl (Topic_Entity_Id, Topic_Id, Entity_Type, Entity_Value, Active_Flag, Created_Date, Modified_Date) VALUES ('4', '1', 'KEYWORD', 'IMMIGRATION', '1', '2019-04-30', '2019-04-30');

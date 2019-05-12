@@ -46,9 +46,6 @@ CREATE TABLE `dapproject`.`twitter_data_tbl` (
   `Original_Tweet_Id` VARCHAR(100),
   `Original_Tweet_Date` TIMESTAMP DEFAULT 0,
   `Original_Text` VARCHAR(250),
-  -- `Original_Hashtag` VARCHAR(250),
-  -- `Original_Expanded_Url` VARCHAR(250),
-  -- `Original_iso_language_code` VARCHAR(250),
   `Original_User_Id` VARCHAR(250),  
   `Original_User_Name` VARCHAR(250),
   `Original_User_Screen_Name` VARCHAR(250),
@@ -66,10 +63,11 @@ CREATE TABLE `dapproject`.`twitter_sentiments_tbl` (
   `Tweet_Id` VARCHAR(100) NOT NULL,
   `Topic_Entity_Id` INT NOT NULL,
   `Sentiment_Type` ENUM('POSITIVE', 'NEGATIVE', 'NEUTRAL') NOT NULL,
-  `Sentiment_Percentage` INT,
+  `Sentiment_Percentage` DECIMAL(6,5),
   `Created_Date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified_Date` TIMESTAMP,
   PRIMARY KEY (`Tweet_Sentiment_Id`),
+  UNIQUE KEY `twitter_sentiments_uk01` (`Tweet_Id`),
   CONSTRAINT `twitter_sentiments_fk01` FOREIGN KEY (`Tweet_Id`) REFERENCES `dapproject`.`twitter_data_tbl` (`Tweet_Id`),
   CONSTRAINT `twitter_sentiments_fk02` FOREIGN KEY (`Topic_Entity_Id`) REFERENCES `dapproject`.`topic_entities_tbl` (`Topic_Entity_Id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=UTF8; 
