@@ -32,6 +32,29 @@ class dataClient():
 		topic_select = 'select a.topic_id,a.Name, b.Topic_Entity_Id,b.Entity_Type,b.Entity_Value from topics_tbl a, topic_entities_tbl b where a.topic_id = b.topic_id and a.Active_flag = 1 and b.Active_flag=1'
 		df = self.get_dataAsDataFrame(topic_select)
 		return df
+	
+	def callStoredProcedure(self,procname,args):
+		try:
+			
+			connection = self.get_connection()
+			cursor = connection.cursor(buffered=True)
+			if len(args) > 0:
+				cursor.callproc(procname, args)
+			else:
+				cursor.callproc(procname)
+			column_names_list = []
+			results = []
+			for result in cursor.stored_results():
+				column_names_list = [x[0] for x in result.description]
+				results = result.fetchall()
+			df = DataFrame(results,columns=column_names_list)
+			cursor.close()
+			connection.close()
+			return df
+		except Exception as e:
+			cursor.close()
+			connection.close()
+
 
 	def get_dataAsDataFrame(self,sql):
 		try:
@@ -86,4 +109,18 @@ class dataClient():
 			connection.close()
 
 if __name__ == "__main__":
-	pass
+	# Sample Code to invoke the Stored Procedure 
+	data = dataClient()
+	args=['ORIGINAL']
+	sentiment_df = data.callStoredProcedure('Get_Tweets_Sentiments',args)
+	print(sentiment_df)
+	arg=[]
+	topics_df = data.callStoredProcedure('Get_Topics',arg)
+	print(topics_df,arg)
+	time1 = datetime.date.today()
+	time2 = datetime.date.today()
+
+	ar = [1,time1,time2,100,'SUCCESS']
+	response = data.callStoredProcedure('Create_Event_Log',ar)
+	print(response)
+

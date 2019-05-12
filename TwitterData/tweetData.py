@@ -53,11 +53,11 @@ class TwitterClient(object):
 		analysis = TextBlob(self.clean_tweet(tweet))
 		# set sentiment
 		if analysis.sentiment.polarity > 0:
-			return 'positive'
+			return 'POSITIVE',analysis.sentiment.polarity
 		elif analysis.sentiment.polarity == 0:
-			return 'neutral'
+			return 'NEUTRAL',analysis.sentiment.polarity
 		else:
-			return 'negative'
+			return 'NEGATIVE',analysis.sentiment.polarity
 		
 
 	def get_tweets(self, topic_Entity_id, query, count = 10):
@@ -130,7 +130,7 @@ class TwitterClient(object):
 				parsed_tweet['Created_Date'] = datetime.date.today()
 				parsed_tweet['Modified_Date'] = datetime.date.today()
 				# saving sentiment of tweet
-				#parsed_tweet['Sentiment_Type'] = self.get_tweet_sentiment(tweet.text).upper()
+				#parsed_tweet['Sentiment_Type'],parsed_tweet['Sentiment_Percentage'] = self.get_tweet_sentiment(tweet.text)
 				#parsed_tweet['Sentiment_Percentage'] = 1
 				
 				

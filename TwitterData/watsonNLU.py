@@ -2,6 +2,7 @@ import json
 import os
 import configparser
 from ibm_watson import NaturalLanguageUnderstandingV1
+from ibm_watson import ApiException
 from ibm_watson.natural_language_understanding_v1 import Features, SentimentOptions
 
 class watsonNLUClient():
