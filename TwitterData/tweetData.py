@@ -166,17 +166,26 @@ def main():
 	for topic in results:
 		Topic_Entity_Id = topic[2]
 		Topic_Entity_Value = topic[4]
-		# calling function to get tweets
-		tweets = api.get_tweets(topic_Entity_id=Topic_Entity_Id,query = Topic_Entity_Value, count = 200)
-		# print (tweets)
-		tweetsDF = pd.DataFrame(tweets)
-		tweetsDFCopy = tweetsDF.copy
-		twitterDataDF = tweetsDF.drop(['Sentiment_Type','Sentiment_Percentage'],axis=1)
-
-		data.saveDatatoDB(twitterDataDF,'twitter_data_tbl')
-		sentimentDataDF = tweetsDF[['Tweet_Id','Topic_Entity_Id','Sentiment_Type','Sentiment_Percentage','Created_Date','Modified_Date']]
-		data.saveDatatoDB(sentimentDataDF,'twitter_sentiments_tbl')
-
+		time1 = datetime.datetime.now()
+		count = 200
+		try:
+			# calling function to get tweets
+			
+			tweets = api.get_tweets(topic_Entity_id=Topic_Entity_Id,query = Topic_Entity_Value, count=count)
+			tweetsDF = pd.DataFrame(tweets)
+			tweetsDFCopy = tweetsDF.copy
+			twitterDataDF = tweetsDF.drop(['Sentiment_Type','Sentiment_Percentage'],axis=1)
+			data.saveDatatoDB(twitterDataDF,'twitter_data_tbl')
+			sentimentDataDF = tweetsDF[['Tweet_Id','Topic_Entity_Id','Sentiment_Type','Sentiment_Percentage','Created_Date','Modified_Date']]
+			data.saveDatatoDB(sentimentDataDF,'twitter_sentiments_tbl')
+			time2 = datetime.datetime.now()
+			args = [Topic_Entity_Id,time1,time2,count,'SUCCESS']
+			response = data.callStoredProcedure('Create_Event_Log',args)
+		except Exception as e:
+			time2 = datetime.datetime.now()
+			args1 = [Topic_Entity_Id,time1,time2,count,'FAILURE']
+			response1 = data.callStoredProcedure('Create_Event_Log',args1)
+			print(e)
 		# picking positive tweets from tweets
 		ptweets = [tweet for tweet in tweets if tweet['Sentiment_Type'] == 'POSITIVE']
 		# percentage of positive tweets
