@@ -5,6 +5,7 @@
 
 ### Pull the latest code code from github to build image
 
+### Create the latest config.ini
 
 ### Clean-up unused docker images
 
