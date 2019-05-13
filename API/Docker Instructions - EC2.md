@@ -1,7 +1,7 @@
 ### Connect to EC2 instance
 
 ### Stop the existing Docker Services
-![alt text](../imgs/stop-docker.png "Stop Docker Service")
+![alt text](../imgs/stop-services.png "Stop Docker Service")
 
 ### Pull the latest code code from github to build image
 
