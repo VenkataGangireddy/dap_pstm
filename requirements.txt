@@ -6,7 +6,6 @@ configparser>=3.7.4
 flask>=1.0.2
 flask-cors>=3.0.7
 mysqlclient>=1.4.1
-twwepy>=3.7.0
 ibm-watson>=3.0.3
 MySQL database>=8.0.14
 MySQL Workbench>=8.0
