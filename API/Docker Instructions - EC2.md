@@ -1,7 +1,7 @@
 ### Connect to EC2 instance
 
 ### Stop the existing Docker Services
-![alt text](../imgs/MVP-Architecture.png "MVP Architecture")
+![alt text](../imgs/stop-docker.png "Stop Docker Service")
 
 ### Pull the latest code code from github to build image
 
