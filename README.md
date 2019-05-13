@@ -33,9 +33,17 @@ The UI web app was built using Bootstrap as a base framework.  The design is com
 **Description:**  
 The REST API service was built in Python using flask.  It currently runs on your local machine and leverages the dataServices DataClient in the TwitterData folder.  The service pulls the data from the MySQL database based on api GET calls and then publishes them to the user as a JSON string.
 
+**Services running in AWS Docker Containers:**
+These REST API services have been deployed on AWS using Docker containers. These are the services in our application. They can be accessed via the following URLs.
+
+* http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/tweets
+* http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/topics
+* http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/trending/topics 
+
+
 **Requirements:**  Python 3, Flask, MySql.Connector, MySQL Client, Pandas, ConfigParser, JSON, Sys
 
-**Run by:**  In terminal, navigate to the API folder.  Use command "python api.py"
+**Run by:**  when running locally, navigate to the API folder.  Use command "python api.py"
   
 ![alt text](imgs/MVP-RunAPI.png "MVP Run API")
 
@@ -47,12 +55,6 @@ The REST API service was built in Python using flask.  It currently runs on your
 **Sample Outputs:**  
 ![alt text](imgs/MVP-APIOutputs.png "MVP API Sample Outputs")
 
-**Services running in AWS Docker Containers:**
-These REST API services have also been deployed on AWS using Docker containers. They can be accessed via the following URLs.
-
-* http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/tweets
-* http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/topics
-* http://ec2-18-218-0-230.us-east-2.compute.amazonaws.com/api/get/trending/topics 
 
 ### The Twitter Retrieval, Classify and Sentiment Analysis Service
 **Located at:**  TwitterData folder
