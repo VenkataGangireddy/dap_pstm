@@ -27,7 +27,7 @@ The UI web app was built using Bootstrap as a base framework.  The design is com
   
 ![alt text](imgs/MVP-WebApp.png "MVP Web App")
 
-### The REST API Service
+### The REST API Service (AWS and Local Deployments)
 **Located at:**  API/api.py
 
 **Description:**  
@@ -45,7 +45,7 @@ These REST API services have been deployed on AWS using Docker containers. These
 
 **Run by:**  when running locally, navigate to the API folder.  Use command "python api.py"
   
-![alt text](imgs/MVP-RunAPI.png "MVP Run API")
+![alt text](imgs/rest-api-local.png "MVP Run API")
 
 **Sample Inputs:**
 * http://127.0.0.1:5000/api/get/tweets
